@@ -1,4 +1,5 @@
 {
-    "project_name": "Name of the project",
-    "runtime": "nodejs8.10"
+  "project_name": "Name of the project",
+  "hosted_zone_dash": "Hosted zone using dash (e.g api-chynge-com)",
+  "runtime": "nodejs8.10"
 }

@@ -7,21 +7,21 @@ Generate a new SAM based serverless app.
 ``` bash
 sam init --location gh:bagubagu/cookiecutter-sam
 
+# make changes
+# ...
+
+# deploy according to template.yaml
+npm run deploy
 ```
 
 ## Template design goal
 
-- exclude `aws-sdk` from the zipped deployment bundle
-- enable vscode autocompletion of `*.js` files by leveraging `jsconfig.json`
+- exclude `aws-sdk` and other unused packages from the zipped deployment bundle
+- use typescript to leverage static typing, interface, autocompletion, `aws-lambda` definition
+- automate deployment. Make changes and just run `npm run deploy` 
 
 ### Exclude `aws-sdk` from the zipped deployment bundle
 
-We do not want to bundle `aws-sdk` into our deployment zip file. For that we put the `aws-sdk` in the `node_modules` parent directory of `src`.
+`aws-sdk` is already pre-installed in lambda environment. For that reason we do not have to and we do not want to bundle `aws-sdk` into the deployment zip file. We use `lambpack` to help with that.
 
-The pre-configured `node_module/aws-sdk` is of version `2.249.1`. Which is the same version as what is is installed in the aws lambda container (according to  https://docs.aws.amazon.com/lambda/latest/dg/current-supported-versions.html).
-
-### Enable vscode autocompletion
-
-By having `jsconfig.json` in the project directory, `vscode` enables autocompletion for `js` files. The autocompletion uses definition from `**.d.ts` files from project directory including `node_modules` directories.
-
-
+The pre-configured `node_module/aws-sdk` in `package.json` is of version `2.249.1`. Which is the same version as what is is installed in the aws lambda container (according to  https://docs.aws.amazon.com/lambda/latest/dg/current-supported-versions.html).
