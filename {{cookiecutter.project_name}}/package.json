@@ -6,7 +6,7 @@
   "scripts": {
     "tsc": "tsc",
     "lambpack": "npm run tsc && lambpack index.js {{ cookiecutter.project_name }}.zip",
-    "package": "npm run lambpack && aws s3 mb {{ cookiecutter.hosted_zone_dash }} && aws s3 cp {{ cookiecutter.project_name }}.zip s3://{{ cookiecutter.hosted_zone_dash}}-lambdas",
+    "package": "npm run lambpack && aws s3 mb s3://{{ cookiecutter.hosted_zone.lower().replace('.','-') }} && aws s3 cp {{ cookiecutter.project_name }}.zip s3://{{ cookiecutter.hosted_zone.lower().replace('.','-') }}-lambdas",
     "deploy": "npm run package && sam deploy --template-file template.yaml --stack-name {{ cookiecutter.project_name }} --capabilities CAPABILITY_IAM",
     "delete": "aws cloudformation delete-stack --stack-name {{ cookiecutter.project_name }}"
   },
