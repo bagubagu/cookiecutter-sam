@@ -13,8 +13,8 @@ sam init --location gh:bagubagu/cookiecutter-sam
 # initial deployment as per template.yaml
 npm run deploy
 
-# run this anytime you modify lambda function
-npm run package
+# upload lambda. run this anytime you modify lambda function
+npm run upload
 ```
 
 ## Template design goal
